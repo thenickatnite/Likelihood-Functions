@@ -1,4 +1,5 @@
 function estMLE = Tobit(Y,X)
+% This function is for use in a Tobit regression, or a regression with corner solution.
 Yind = bsxfun(@eq, Y, 0);
 % creates a vector of 1s and 0s that tell us whether Y is greater than 0
 nx = size(X,2);
@@ -23,6 +24,7 @@ end
 
 opts = optimoptions('fminunc','MaxFunctionEvaluations',1e6...
     , 'MaxIterations',1e6);
+% getting our figure for our structure, getting the coefficients, standard errors, z-scores, p-values, and variance-covariance matrix
 [xMLE,~,~,~,~,H] = fminunc(@calclike, sv,opts);
 xSE = sqrt(diag(H \ eye(size(H))));
 estMLE = vecparm(xMLE);
