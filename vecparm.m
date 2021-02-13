@@ -1,3 +1,4 @@
+# This function is used to get MATLAB parameters into a nice form. Particularly for a logit regression.
 function est = vecparm(THETA)
 
 est = struct();
